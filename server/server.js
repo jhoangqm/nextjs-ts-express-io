@@ -4,18 +4,18 @@ const cors = require('cors');
 // Port used by express server
 const port = process.env.PORT || 5000;
 
-// use cors
-app.use(cors);
-
 // Create express server app
 const express = require('express');
 const app = express();
 
+// use cors
+app.use(cors);
+
 // Create http server
 const httpServer = require('http').createServer(app);
 // Web Socket called on the server with cors
-const { ioServer } = require('socket.io');
-const io = new ioServer(httpServer, {
+const { Server } = require('socket.io');
+const io = new Server(httpServer, {
   //CORS is needed because HTTP requests sent by the frontend are allowed to reach the server.
   cors: {
     origin: 'http://localhost:3000', // This will communicate with the client
